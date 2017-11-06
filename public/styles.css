@@ -1,0 +1,41 @@
+body
+{
+  background-color: #e8f5e9;
+}
+
+/*/////////// Header //////////////////////////////*/
+.nav-wrapper {
+  background-color: #00e676 !important;
+}
+
+h1 {
+  color: #1b5e20;
+}
+
+.brand-logo {
+  color: #1b5e20 !important;
+}
+
+
+/*///// Card Chart /////////////////*/
+.intro-line {
+  text-align: center;
+}
+
+.number-form {
+  text-align: center;
+}
+
+.number-cards {
+  text-align: center;
+}
+
+.input-field {
+  align-content: center;
+}
+
+/*///////// Card /////////////////*/
+
+.card-title {
+  color: #1b5e20 !important;
+}
