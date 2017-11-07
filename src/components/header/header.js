@@ -5,7 +5,7 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo center">Crypto Charts</a>
+          <a href="#" className="brand-logo center">CryptoCharts</a>
         </div>
       </nav>
     );

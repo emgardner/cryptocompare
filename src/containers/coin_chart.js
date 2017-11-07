@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import CoinCard from '../components/coin_card_list/coin_card_list';
-//import Table from '../components/coin_table/coin_table';
-
 
 class CoinChart extends Component {
   constructor(props) {
@@ -16,6 +14,7 @@ class CoinChart extends Component {
     };
 
     this.onNumChange = this.onNumChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   };
 
   onNumChange(event) {
@@ -28,7 +27,7 @@ class CoinChart extends Component {
   };
 
   getTopCoinData() {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=12')
+    axios.get(`https://api.coinmarketcap.com/v1/ticker/?limit=${this.state.numField}`)
       .then(res => {
         const cryptos = res.data;
         this.setState({cryptos: cryptos});
@@ -49,6 +48,18 @@ class CoinChart extends Component {
     });
   };
 
+  onSubmit(event) {
+    axios.get(`https://api.coinmarketcap.com/v1/ticker/?limit=${this.state.numField}`)
+      .then(res => {
+        const cryptos = res.data;
+        this.setState({cryptos: cryptos});
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      event.preventDefault();
+  }
+
   render() {
     return (
       <div>
@@ -62,7 +73,9 @@ class CoinChart extends Component {
                 Choose how many coins you want to see
               </div>
               <div className="input-field col s12">
-                <form>
+                <form onSubmit={this.onSubmit}>
+                  <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                  </button>
                   <input onChange={this.onNumChange} className="number-cards" value={this.state.numField} id="num_coins" type="number" />
                 </form>
               </div>

@@ -5,6 +5,7 @@ class CoinCard extends Component {
   render() {
     const { tencoin, list } = this.props;
     const coinImageLink = list.BaseImageUrl;
+    const coinInfoLink = list.BaseLinkUrl;
     const symbolList = [];
     tencoin.map(coin =>
       symbolList.push(coin.symbol)
@@ -13,12 +14,21 @@ class CoinCard extends Component {
     var obj = list.Data;
 
     const imageList = {};
+    const urlList = {};
 
     for (var key in obj) {
       if (symbolList.includes(obj[key].Symbol)) {
         var sym =  obj[key].Symbol;
         var img = coinImageLink + obj[key].ImageUrl.toString();
         imageList[sym] = img;
+      }
+    }
+
+    for (var key in obj) {
+      if (symbolList.includes(obj[key].Symbol)) {
+        var sym =  obj[key].Symbol;
+        var url = coinInfoLink + obj[key].Url.toString();
+        urlList[sym] = url;
       }
     }
 
@@ -40,7 +50,7 @@ class CoinCard extends Component {
                 <p>1 week Change: {coin.percent_change_7d}</p>
               </div>
               <div className="card-action">
-                <a href="#">See More about {coin.name}</a>
+                <a href={urlList[coin.symbol]}>See More about {coin.name}</a>
                 <button>Delete</button>
               </div>
             </div>
